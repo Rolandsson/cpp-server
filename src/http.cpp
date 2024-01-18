@@ -18,12 +18,12 @@ HttpRequest::HttpRequest(string data) {
         if(line.find(":") != string::npos) {
             int deliIndex = line.find(":");
             string name = line.substr(0, deliIndex);
-            string value = line.substr(deliIndex + 2, line.length() - deliIndex - 2);
+            string value = line.substr(deliIndex + 2, line.length() - deliIndex - 2); //offset : and space
             
             headers.push_back({ name, value });    
         } else if(line.find(" /") != string::npos) {
             method = line.substr(0, line.find(" "));
-            path = line.substr(line.find("/"), line.find("HTTP") - 5);
+            path = line.substr(line.find("/"), line.find("HTTP") - 5); //offset HTTP + space
             version = line.substr(line.find("HTTP") - 1, line.length() - (line.find("HTTP") - 1));
         }
 
